@@ -28,6 +28,9 @@ def create_note(note_data, soup):
     content_inside_note.string = note_data.content
     content_inside.append(content_inside_note)
 
+    # Holy crap this is super hacky and horrible but I don't want to fight with
+    # BeautifulSoup to make it not convert all the text to HTML entities, so
+    # manually convert everything to < and >
     content_inside_str = str(content_inside).replace('&lt;', '<').replace('&gt;', '>')
 
     content = soup.new_tag('content')
